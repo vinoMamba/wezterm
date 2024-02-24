@@ -13,7 +13,7 @@ config.color_scheme = "Arthur"
 config.font = wezterm.font_with_fallback({
   { family = "JetBrains Mono",  scale = 1.24, weight = "Medium", },
 })
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.8
 config.window_decorations = "RESIZE"
 config.window_close_confirmation = "NeverPrompt"
 config.scrollback_lines = 3000
@@ -34,23 +34,24 @@ config.keys = {
   { key = "phys:Space", mods = "LEADER",      action = act.ActivateCommandPalette },
 
   -- Pane keybindings
-  { key = "s",          mods = "LEADER",      action = act.SplitVertical { domain = "CurrentPaneDomain" } },
-  { key = "v",          mods = "LEADER",      action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
-  { key = "h",          mods = "LEADER",      action = act.ActivatePaneDirection("Left") },
-  { key = "j",          mods = "LEADER",      action = act.ActivatePaneDirection("Down") },
-  { key = "k",          mods = "LEADER",      action = act.ActivatePaneDirection("Up") },
-  { key = "l",          mods = "LEADER",      action = act.ActivatePaneDirection("Right") },
-  { key = "q",          mods = "LEADER",      action = act.CloseCurrentPane { confirm = true } },
+  { key = "j",          mods = "ALT",         action = act.SplitVertical { domain = "CurrentPaneDomain" } },
+  { key = "l",          mods = "ALT",         action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
+  { key = "h",          mods = "CTRL",        action = act.ActivatePaneDirection("Left") },
+  { key = "j",          mods = "CTRL",        action = act.ActivatePaneDirection("Down") },
+  { key = "k",          mods = "CTRL",        action = act.ActivatePaneDirection("Up") },
+  { key = "l",          mods = "CTRL",        action = act.ActivatePaneDirection("Right") },
+  { key = "q",          mods = "LEADER",      action = act.CloseCurrentPane { confirm = false } },
   { key = "z",          mods = "LEADER",      action = act.TogglePaneZoomState },
   { key = "o",          mods = "LEADER",      action = act.RotatePanes "Clockwise" },
+
   -- We can make separate keybindings for resizing panes
   -- But Wezterm offers custom "mode" in the name of "KeyTable"
   { key = "r",          mods = "LEADER",      action = act.ActivateKeyTable { name = "resize_pane", one_shot = false } },
 
   -- Tab keybindings
   { key = "t",          mods = "LEADER",      action = act.SpawnTab("CurrentPaneDomain") },
-  { key = "[",          mods = "LEADER",      action = act.ActivateTabRelative(-1) },
-  { key = "]",          mods = "LEADER",      action = act.ActivateTabRelative(1) },
+  { key = "-",          mods = "CTRL",            action = act.ActivateTabRelative(-1) },
+  { key = "=",          mods = "CTRL",            action = act.ActivateTabRelative(1) },
   { key = "n",          mods = "LEADER",      action = act.ShowTabNavigator },
   {
     key = "e",
