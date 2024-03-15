@@ -5,12 +5,12 @@ local config = {}
 -- Use config builder object if possible
 if wezterm.config_builder then config = wezterm.config_builder() end
 
-config.background = {
-    {
-      source = { File = "C:\\Users\\wx\\.config\\wezterm\\images\\astro.jpg" },
-      opacity = 0.9
-    },
-  }
+-- config.background = {
+--     {
+--       source = { File = "C:\\Users\\vino0\\.config\\wezterm\\images\\astro.jpg" },
+--       opacity = 0.9
+--     },
+--   }
 
 config.window_padding = {
   left = 10,
