@@ -15,6 +15,8 @@ config.use_fancy_tab_bar = false
 config.enable_tab_bar = true
 config.show_tab_index_in_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = false
+-- SteadyBlock, BlinkingBlock, SteadyUnderline, BlinkingUnderline, SteadyBar, and BlinkingBar
+config.default_cursor_style = 'SteadyUnderline'
 
 config.window_padding = {
   left = 10,
