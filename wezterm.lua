@@ -10,7 +10,7 @@ if string.find(wezterm.target_triple, "windows") then
 end
 
 --Colors & Appearance
-config.color_scheme = 'Arthur'
+config.color_scheme = 'Dark Flat'
 config.use_fancy_tab_bar = false
 config.enable_tab_bar = true
 config.show_tab_index_in_tab_bar = false
@@ -30,8 +30,9 @@ config.inactive_pane_hsb = {
   brightness = 0.8,
 }
 
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.3
 config.text_background_opacity = 0.3
+config.macos_window_background_blur = 20
 
 -- Fonts
 config.font = wezterm.font_with_fallback({
