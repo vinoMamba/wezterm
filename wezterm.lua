@@ -16,7 +16,7 @@ config.enable_tab_bar = true
 config.show_tab_index_in_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = false
 -- SteadyBlock, BlinkingBlock, SteadyUnderline, BlinkingUnderline, SteadyBar, and BlinkingBar
-config.default_cursor_style = 'SteadyUnderline'
+config.default_cursor_style = 'BlinkingUnderline'
 
 config.window_padding = {
   left = 10,
@@ -30,14 +30,14 @@ config.inactive_pane_hsb = {
   brightness = 0.8,
 }
 
-config.window_background_opacity = 0.3
-config.text_background_opacity = 0.3
+config.window_background_opacity = 0.5
+config.text_background_opacity = 0.5
 config.macos_window_background_blur = 20
 
 -- Fonts
 config.font = wezterm.font_with_fallback({
   {
-    family = "JetBrains Mono",
+    family = "FiraCode Nerd Font",
     scale = 1.24,
     weight = "Medium",
     -- italic = true,
@@ -45,6 +45,8 @@ config.font = wezterm.font_with_fallback({
     -- harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
   },
 })
+
+config.hide_tab_bar_if_only_one_tab = true
 
 -- Key Bingding
 config.disable_default_key_bindings = true
@@ -56,9 +58,11 @@ config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
   { key = 'r',          mods = 'LEADER',         action = act.ReloadConfiguration },
   { key = 'n',          mods = 'LEADER',         action = act.SpawnWindow },
+
   { key = 'w',          mods = 'LEADER',         action = act.CloseCurrentTab { confirm = true } },
+  { key = "w",          mods = "LEADER",         action = wezterm.action.CloseCurrentPane { confirm = true } },
+
   { key = 'q',          mods = 'LEADER',         action = act.QuitApplication },
-  { key = 'f',          mods = 'LEADER',         action = act.ToggleFullScreen },
   { key = 'n',          mods = 'ALT',            action = act.SpawnTab 'CurrentPaneDomain' },
 
   { key = '=',          mods = 'LEADER',         action = act.ActivateTabRelative(1) },
@@ -70,8 +74,19 @@ config.keys = {
   { key = '0',          mods = 'SHIFT|CTRL',     action = act.ResetFontSize },
   { key = '+',          mods = 'SHIFT|CTRL',     action = act.IncreaseFontSize },
   { key = '-',          mods = 'SHIFT|CTRL',     action = act.DecreaseFontSize },
-  { key = 'H',          mods = 'LEADER',         action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
-  { key = 'V',          mods = 'LEADER',         action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
+  { key = '\\',         mods = 'LEADER',         action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+  { key = '|',          mods = 'LEADER',         action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
+
+
+  { key = 'i',          mods = 'CMD',            action = act.TogglePaneZoomState },
+  { key = 'i',          mods = 'LEADER',         action = act.SplitPane { direction = "Down", size = { Percent = 30 } } },
+
+  { key = 'l',          mods = 'LEADER',         action = act.ActivatePaneDirection "Right" },
+  { key = 'h',          mods = 'LEADER',         action = act.ActivatePaneDirection "Left" },
+  { key = 'j',          mods = 'LEADER',         action = act.ActivatePaneDirection "Down" },
+  { key = 'k',          mods = 'LEADER',         action = act.ActivatePaneDirection "Up" },
+
+
   { key = 'c',          mods = 'SUPER',          action = act.CopyTo 'Clipboard' },
   { key = 'v',          mods = 'SUPER',          action = act.PasteFrom 'Clipboard' },
 
@@ -162,18 +177,18 @@ end)
 
 -- event: update-status
 config.status_update_interval = 1000
-wezterm.on("update-status", function(window)
-  local date = wezterm.strftime '%b %-d %H:%M '
-
-  window:set_right_status(wezterm.format({
-    { Text = ' ' },
-    { Foreground = { Color = '#74c7ec' } },
-    { Background = { Color = 'rgba(0,0,0,0.4)' } },
-    { Attribute = { Intensity = "Bold" } },
-    { Text = wezterm.nerdfonts.fa_calendar .. ' ' .. date },
-    { Text = ' ' },
-  }))
-end)
+-- wezterm.on("update-status", function(window)
+-- local date = wezterm.strftime '%b %-d %H:%M '
+--
+-- window:set_right_status(wezterm.format({
+--   { Text = ' ' },
+--   { Foreground = { Color = '#74c7ec' } },
+--   { Background = { Color = 'rgba(0,0,0,0.4)' } },
+--   { Attribute = { Intensity = "Bold" } },
+--   { Text = wezterm.nerdfonts.fa_calendar .. ' ' .. date },
+--   { Text = ' ' },
+-- }))
+-- end)
 
 -- event: format-tab-title
 

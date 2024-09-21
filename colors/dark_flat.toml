@@ -24,12 +24,12 @@ foreground = "#eceef0"
 cursor_bg = "#ffffff"
 cursor_border = "#ffffff"
 cursor_fg = "#000000"
-selection_bg = "#25b1f5"
+selection_bg = "#A486C7"
 selection_fg = "#f0f0f0"
 
 [colors.tab_bar]
 background = "#18191a"
-inactive_tab_edge = "#00b0ff"
+inactive_tab_edge = "#A486C7"
 
 [colors.tab_bar.active_tab]
 bg_color = "#000000"
